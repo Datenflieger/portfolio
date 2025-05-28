@@ -1,62 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Yo, inspect Users! Welcome to the source code of Datenflieger's portfolio 👨‍💻🤩😻 -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datenflieger | Developer</title>
+    <title>Datenflieger | Portfolio</title>
+
+    <!-- Font from Google, we type in style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- External stylesheets? Yes sir. We like clean UI 😻-->
     <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Icons? We got Font Awesome on speed dial -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="background-gradient"></div>
-    <canvas id="particles-canvas"></canvas>
-    
-    <main>
-        <div class="card-container">
-            <div class="card">
-                <div class="card-header">
-                    <h1 class="glitch" data-text="Datenflieger">Datenflieger</h1>
-                    <div class="typing-container">
-                        <span id="typing-text"></span>
+
+<!-- Preloader -->
+<div id="preloader">
+    <div class="loader"></div>
+</div>
+
+<!-- Background grid just for the vibes -->
+<div class="grid-bg"></div>
+
+<!-- Navigation bar: the place where all journeys begin -->
+<nav class="navbar">
+    <div class="navbar-brand">
+        <!-- Spinning logo = extra style points 💯 -->
+        <img src="assets/img/logo.png" alt="Datenflieger Logo" class="logo-spin">
+        <span class="brand-name">Datenflieger</span>
+    </div>
+
+    <!-- Desktop nav links, hidden on mobile 🤯 -->
+    <div class="navbar-links desktop-only">
+        <button class="nav-link active" data-section="skills">About Me</button>
+        <button class="nav-link" data-section="projects">Projects</button>
+        <button class="nav-link" data-section="contact">Contact</button>
+    </div>
+
+    <!-- Hamburger for mobile users who like burgers 🍔 -->
+    <button id="menuBtn" class="menu-button">
+        <i class="fas fa-bars"></i>
+    </button>
+</nav>
+
+<!-- Mobile menu appears when burger is clicked 🍔☝️ -->
+<div id="mobileMenu" class="mobile-menu hidden">
+    <div class="mobile-menu-links">
+        <button class="nav-link active" data-section="skills">About Me</button>
+        <button class="nav-link" data-section="projects">Projects</button>
+        <button class="nav-link" data-section="contact">Contact</button>
+    </div>
+</div>
+
+<div class="sections-container">
+
+    <!-- About Me Section -->
+    <section id="skills" class="section active">
+        <h2 class="section-title">About <span class="highlight">Me</span></h2>
+        <div class="container"> 
+
+            <!-- Text Panel (the styled box) -->
+            <div class="about-me-text-panel">
+                <div class="about-me-content">
+                    <h3>Hello, I'm Datenflieger!</h3>
+                    <p>
+                        Im Datenflieger, a dude who likes to code Minecraft Stuff and make some cool Websites.
+                    </p>
+                    
+                    <h4>My Skills</h4>
+                    <div class="about-me-skills">
+                        <span title="HTML5"><i class="fab fa-html5"></i></span>
+                        <span title="CSS3"><i class="fab fa-css3-alt"></i></span>
+                        <span title="JavaScript"><i class="fab fa-js-square"></i></span>
+                        <span title="Python"><i class="fab fa-python"></i></span>
+                        <span title="React"><i class="fab fa-react"></i></span>
+                        <span title="Java"><i class="fab fa-java"></i></span>
                     </div>
-                </div>
-                
-                <div class="card-content">
-                    <h2 class="section-title">Tech Stack</h2>
-                    <div class="tech-grid">
-                        <div class="tech-icons-container">
-                            <img src="https://skillicons.dev/icons?i=html" alt="HTML" class="tech-icon" data-delay="0">
-                            <img src="https://skillicons.dev/icons?i=css" alt="CSS" class="tech-icon" data-delay="100">
-                            <img src="https://skillicons.dev/icons?i=js" alt="JavaScript" class="tech-icon" data-delay="200">
-                            <img src="https://skillicons.dev/icons?i=nodejs" alt="Node.js" class="tech-icon" data-delay="300">
-                            <img src="https://skillicons.dev/icons?i=java" alt="Java" class="tech-icon" data-delay="400">
-                            <img src="https://skillicons.dev/icons?i=python" alt="Python" class="tech-icon" data-delay="500">
-                            <img src="https://skillicons.dev/icons?i=mysql" alt="MySQL" class="tech-icon" data-delay="600">
-                            <img src="https://skillicons.dev/icons?i=mongodb" alt="MongoDB" class="tech-icon" data-delay="700">
-                            <img src="https://skillicons.dev/icons?i=sqlite" alt="SQLite" class="tech-icon" data-delay="800">
-                            <img src="https://skillicons.dev/icons?i=git" alt="Git" class="tech-icon" data-delay="900">
-                            <img src="https://skillicons.dev/icons?i=gradle" alt="Gradle" class="tech-icon" data-delay="1100">
-                            <img src="https://skillicons.dev/icons?i=maven" alt="Maven" class="tech-icon" data-delay="1200">
-                            <img src="https://skillicons.dev/icons?i=markdown" alt="Markdown" class="tech-icon" data-delay="1300">
-                            <img src="https://skillicons.dev/icons?i=vscode" alt="VS Code" class="tech-icon" data-delay="1400">
-                            <img src="https://skillicons.dev/icons?i=idea" alt="IntelliJ IDEA" class="tech-icon" data-delay="1500">
-                            <img src="https://skillicons.dev/icons?i=debian" alt="Debian" class="tech-icon" data-delay="1600">
-                            <img src="https://skillicons.dev/icons?i=windows" alt="Windows" class="tech-icon" data-delay="1700">
-                            <img src="https://skillicons.dev/icons?i=photoshop" alt="Photoshop" class="tech-icon" data-delay="1800">
-                            <img src="https://skillicons.dev/icons?i=illustrator" alt="Illustrator" class="tech-icon" data-delay="1900">
-                            <img src="https://skillicons.dev/icons?i=premiere" alt="Premiere" class="tech-icon" data-delay="2000">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card-footer">
-                    <div class="disclaimer">
-                        <p>Diese Webseite dient ausschließlich dazu, meine Programmierskills zu präsentieren. Ich biete keine Dienstleistungen an, und es werden keine kommerziellen Angebote gemacht.</p>
-                    </div>
+
+                    <h4>Hobbies & Interests</h4>
+                    <p>
+                        Beyond coding, I enjoy gaming with friends – and a fun fact about me: I’m one of those people who enjoy pineapple on pizza.
+                    </p>
                 </div>
             </div>
-        </div>
-    </main>
 
-    <script src="js/main.js"></script>
+            <!-- Avatar Panel (no box styling, just for positioning the image) -->
+            <div class="about-me-avatar-panel">
+                <div class="avatar-container">
+                    <img src="assets/img/avatar.png" alt="Datenflieger Minecraft Avatar" class="animated-avatar">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2 class="section-title">Past <span class="highlight">Projects</span></h2>
+        <div class="container">
+            <div class="projects-carousel-container">
+                <button class="carousel-button prev" id="prevProjectBtn" aria-label="Previous project">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <!-- Projects grid. -->
+                <div class="projects-grid">
+
+                    <!-- Project 1: CherryBlock -->
+                    <div class="project-card">
+                        <div class="project-image-container">
+                            <img src="assets/img/cherryblock.png" alt="CherryBlock" class="project-image">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">CherryBlock.de</h3>
+                            <p class="project-desc">A Minecraft network server with unique game modes and features.</p>
+                            <a href="https://dc.cherryblock.de" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt icon-margin"></i> Visit
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: UnfinishedStory -->
+                    <div class="project-card">
+                        <div class="project-image-container">
+                            <img src="assets/img/unfinishedstory.png" alt="UnfinishedStory" class="project-image">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">UnfinishedStory.de</h3>
+                            <p class="project-desc">A Minecraft RPG server with unique quests and adventures.</p>
+                            <a href="https://unfinishedstory.de" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt icon-margin"></i> Visit
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: OnThePixel -->
+                    <div class="project-card">
+                        <div class="project-image-container">
+                            <img src="assets/img/onthepixel.png" alt="OnThePixel" class="project-image">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">OnThePixel.net</h3>
+                            <p class="project-desc">An innovative Minecraft server with unique game modes.</p>
+                            <a href="https://onthepixel.net" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt icon-margin"></i> Visit
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <button class="carousel-button next" id="nextProjectBtn" aria-label="Next project">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Get In <span class="highlight">Touch</span></h2>
+        <div class="container">
+
+            <div class="contact-options-grid">
+
+                <!-- Discord Card -->
+                <div class="contact-option-card">
+                    <div class="contact-icon-container">
+                        <i class="fab fa-discord contact-icon"></i>
+                    </div>
+                    <h3>Discord</h3>
+                    <p>For quick chats or community discussions.</p>
+                    <a href="https://discord.com/users/1203450345615790211" target="_blank" class="btn-contact">Open Discord Profile</a> 
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="page-dots">
+    <button class="page-dot active" data-section="skills"></button>
+    <button class="page-dot" data-section="projects"></button>
+    <button class="page-dot" data-section="contact"></button>
+</div>
+
+<!-- Main JS doing its magic 🪄 -->
+<script src="js/main.js"></script>
+
 </body>
-</html> 
+</html>
