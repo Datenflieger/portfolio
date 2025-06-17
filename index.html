@@ -3,14 +3,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
     <title>Datenflieger | Portfolio</title>
-
-    <!-- Font from Google, we type in style -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- External stylesheets? Yes sir. We like clean UI 😻-->
     <link rel="stylesheet" href="css/styles.css">
@@ -191,6 +185,33 @@
 
 <!-- Main JS doing its magic 🪄 -->
 <script src="js/main.js"></script>
+
+<!-- Privacy Policy Popup -->
+<div id="privacy-policy-popup" class="hidden">
+    <div class="privacy-popup-content">
+        <h3>Privacy Policy</h3>
+        <p><em>Last updated: 2025-06-17</em></p>
+        <p>Thank you for visiting my personal website. I respect your privacy and am committed to protecting it. Here’s a brief overview of what data (if any) is collected:</p>
+        <h2>1. No Personal Data Collection</h2>
+        <p>This website does not collect or store any personal data about its visitors. No contact forms, no analytics, no cookies, no trackers.</p>
+        <h2>2. Fonts & Resources</h2>
+        <p>Most fonts (like SpaceGrotesk and Silkscreen) and primary assets are served locally from this website’s server to minimize external requests. However, for some functionalities like icons, third-party services may be used, as detailed below.</p>
+        <h2>3. Third-Party Services (Font Awesome)</h2>
+        <p>This website uses Font Awesome for icons, loaded from the cdnjs (Cloudflare) CDN: <code>https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css</code>. Using this service may involve data processing by the CDN provider (Cloudflare) for delivery and security purposes. You can review their privacy policies here: <a href="https://fontawesome.com/privacy" target="_blank" rel="noopener noreferrer" class="privacy-link">Font Awesome Privacy Policy</a> and <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" class="privacy-link">Cloudflare’s Privacy Policy</a>.</p>
+        <h2>4. Hosting Information</h2>
+        <p>This website is hosted via Cloudflare Pages, which may technically process IP addresses for security and performance purposes. This is also handled according to <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" class="privacy-link">Cloudflare’s Privacy Policy</a>.</p>
+        <h2>5. External Links</h2>
+        <p>My site may contain links to external websites (like Discord). I’m not responsible for the content or privacy practices of those websites.</p>
+        <h2>6. Contact</h2>
+        <p>If you have any questions about this policy, feel free to reach out via Discord: datenflieger.</p>
+        <button id="close-privacy-btn" aria-label="Close privacy policy">Close</button>
+    </div>
+</div>
+
+<!-- Privacy Policy Toggle Switch -->
+<div id="privacy-toggle-container">
+        <button id="privacy-policy-button" class="btn btn-secondary" aria-label="Open Privacy Policy">Privacy</button>
+    </div>
 
 </body>
 </html>
