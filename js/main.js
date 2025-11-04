@@ -1,11 +1,5 @@
-const sections = document.querySelectorAll('.section');
-const navLinks = document.querySelectorAll('.nav-link');
-const pageDots = document.querySelectorAll('.page-dot');
 const menuBtn = document.getElementById('menuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
-
-let currentSectionIndex = 0;
-const sectionIds = ['skills', 'projects', 'contact'];
 
 window.addEventListener('load', function() {
     const preloader = document.getElementById('preloader');
@@ -21,27 +15,18 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function setupEventListeners() {
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            const targetSection = e.target.getAttribute('data-section');
-            navigateToSection(targetSection);
+    if (menuBtn) {
+        menuBtn.addEventListener('click', toggleMobileMenu);
+    }
+
+    if (mobileMenu) {
+        mobileMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('block');
+            });
         });
-    });
-
-    pageDots.forEach(dot => {
-        dot.addEventListener('click', (e) => {
-            const targetSection = e.target.getAttribute('data-section');
-            navigateToSection(targetSection);
-        });
-    });
-
-    menuBtn.addEventListener('click', toggleMobileMenu);
-
-    document.addEventListener('keydown', handleKeyNavigation);
-
-    document.addEventListener('wheel', handleWheelNavigation, { passive: false });
-
-    setupTouchNavigation();
+    }
 
     const discordButtons = document.querySelectorAll('.discord-button');
     discordButtons.forEach(button => {
@@ -51,202 +36,108 @@ function setupEventListeners() {
     });
 }
 
-function navigateToSection(sectionId) {
-    currentSectionIndex = sectionIds.indexOf(sectionId);
-
-    sections.forEach(section => {
-        if (section.id === sectionId) {
-            section.classList.add('active');
-        } else {
-            section.classList.remove('active');
-        }
-    });
-
-    navLinks.forEach(link => {
-        if (link.getAttribute('data-section') === sectionId) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-
-    pageDots.forEach(dot => {
-        if (dot.getAttribute('data-section') === sectionId) {
-            dot.classList.add('active');
-        } else {
-            dot.classList.remove('active');
-        }
-    });
-
-    if (mobileMenu.classList.contains('block')) {
-        toggleMobileMenu();
-    }
-}
-
 function toggleMobileMenu() {
     mobileMenu.classList.toggle('hidden');
     mobileMenu.classList.toggle('block');
 }
 
-function handleKeyNavigation(e) {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        navigateToNextSection();
-    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        navigateToPrevSection();
-    }
-}
-
-function navigateToNextSection() {
-    let nextIndex = currentSectionIndex + 1;
-    if (nextIndex >= sectionIds.length) {
-        nextIndex = 0;
-    }
-    navigateToSection(sectionIds[nextIndex]);
-}
-
-function navigateToPrevSection() {
-    let prevIndex = currentSectionIndex - 1;
-    if (prevIndex < 0) {
-        prevIndex = sectionIds.length - 1;
-    }
-    navigateToSection(sectionIds[prevIndex]);
-}
-
-function handleWheelNavigation(e) {
-    const privacyPopup = document.getElementById('privacy-policy-popup');
-    const privacyPopupContent = privacyPopup ? privacyPopup.querySelector('.privacy-popup-content') : null;
-
-    if (privacyPopup && !privacyPopup.classList.contains('hidden')) {
-        if (privacyPopupContent && privacyPopupContent.contains(e.target)) {
-            return; 
-        } else {
-            e.preventDefault();
-            return;
-        }
-    }
-
-    if (wheelTimeout) {
-        e.preventDefault();
-        return;
-    }
-
-    const activeSection = sections[currentSectionIndex];
-    const isScrollable = activeSection.scrollHeight > activeSection.clientHeight;
-    const scrollBuffer = 10;
-
-    if (e.deltaY > 0) {
-        if (isScrollable && (activeSection.scrollTop + activeSection.clientHeight < activeSection.scrollHeight - scrollBuffer)) {
-            return; 
-        } else {
-            e.preventDefault();
-            wheelTimeout = setTimeout(() => {
-                wheelTimeout = null;
-            }, 800);
-            navigateToNextSection();
-        }
-    } else if (e.deltaY < 0) {
-        if (isScrollable && activeSection.scrollTop > scrollBuffer) {
-            return;
-        } else {
-            e.preventDefault();
-            wheelTimeout = setTimeout(() => {
-                wheelTimeout = null;
-            }, 800);
-            navigateToPrevSection();
-        }
-    }
-}
-
-let wheelTimeout = null;
-
-function setupTouchNavigation() {
-    let touchStartX = 0;
-    let touchEndX = 0;
-    let touchStartY = 0;
-    let touchEndY = 0;
-    
-    document.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        touchStartY = e.changedTouches[0].screenY;
-    });
-    
-    document.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        touchEndY = e.changedTouches[0].screenY;
-
-        const diffX = touchStartX - touchEndX;
-        const diffY = touchStartY - touchEndY;
-
-        if (Math.abs(diffX) > Math.abs(diffY)) {
-            if (diffX > 50) {
-                navigateToNextSection();
-            } else if (diffX < -50) {
-                navigateToPrevSection();
-            }
-        } else {
-            if (diffY > 50) {
-                navigateToNextSection();
-            } else if (diffY < -50) {
-                navigateToPrevSection();
-            }
-        }
-    });
-}
-
 function setupProjectCarousel() {
-    const carouselContainer = document.querySelector('.projects-carousel-container');
-    const projectsGrid = document.querySelector('.projects-grid');
-    const prevButton = document.getElementById('prevProjectBtn');
-    const nextButton = document.getElementById('nextProjectBtn');
-    const projectCards = Array.from(projectsGrid.querySelectorAll('.project-card'));
+    const prevBtn = document.getElementById('prevProjectBtn');
+    const nextBtn = document.getElementById('nextProjectBtn');
+    const container = document.querySelector('.projects-carousel-container');
+    const grid = document.querySelector('.projects-grid');
+    const cards = document.querySelectorAll('.project-card');
 
-    if (!carouselContainer || !projectsGrid || !prevButton || !nextButton || projectCards.length === 0) {
-        console.warn('Project carousel elements not found or no project cards. Carousel functionality will not be enabled.');
-        if (prevButton) prevButton.style.display = 'none';
-        if (nextButton) nextButton.style.display = 'none';
+    if (!prevBtn || !nextBtn || !container || !grid || !cards.length) {
+        console.error('Carousel: Missing elements');
         return;
     }
 
-    let currentActiveIndex = 1;
-    const cardWidth = projectCards[0].offsetWidth;
-    const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
-    const gap = 1.5 * rootFontSize;
+    console.log('Infinite Carousel initialized with', cards.length, 'cards');
+    let currentIndex = 0;
+    const totalCards = cards.length;
 
-    function updateCarouselView(activeIndex) {
-        const viewportWidth = carouselContainer.offsetWidth;
-        let offsetX = (viewportWidth / 2) - (cardWidth / 2) - (activeIndex * (cardWidth + gap));
+    function updateCarousel() {
+        const containerWidth = container.offsetWidth;
+        const cardWidth = cards[0].getBoundingClientRect().width;
+        const style = window.getComputedStyle(grid);
+        const gap = parseFloat(style.gap) || 20;
+        
+        const centerOffset = (containerWidth / 2) - (cardWidth / 2);
+        const cardOffset = currentIndex * (cardWidth + gap);
+        const translateX = centerOffset - cardOffset;
+        
+        grid.style.transform = `translateX(${translateX}px)`;
+        console.log('Centered card', currentIndex, 'at offset:', translateX);
 
-        projectsGrid.style.transform = `translateX(${offsetX}px)`;
-
-        projectCards.forEach((card, index) => {
-            if (index === activeIndex) {
+        cards.forEach((card, i) => {
+            if (i === currentIndex) {
                 card.classList.add('active-project-card');
             } else {
                 card.classList.remove('active-project-card');
             }
         });
+
+        prevBtn.style.opacity = '1';
+        prevBtn.style.pointerEvents = 'auto';
+        nextBtn.style.opacity = '1';
+        nextBtn.style.pointerEvents = 'auto';
     }
 
-    nextButton.addEventListener('click', () => {
-        currentActiveIndex++;
-        if (currentActiveIndex >= projectCards.length) {
-            currentActiveIndex = 0;
+    prevBtn.addEventListener('click', () => {
+        currentIndex--;
+        if (currentIndex < 0) {
+            currentIndex = totalCards - 1;
         }
-        updateCarouselView(currentActiveIndex);
+        console.log('Prev → Index:', currentIndex);
+        updateCarousel();
     });
 
-    prevButton.addEventListener('click', () => {
-        currentActiveIndex--;
-        if (currentActiveIndex < 0) {
-            currentActiveIndex = projectCards.length - 1;
+    nextBtn.addEventListener('click', () => {
+        currentIndex++;
+        if (currentIndex >= totalCards) {
+            currentIndex = 0;
         }
-        updateCarouselView(currentActiveIndex);
+        console.log('Next → Index:', currentIndex);
+        updateCarousel();
     });
 
-    updateCarouselView(currentActiveIndex);
+    updateCarousel();
 
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevBtn.click();
+        } else if (e.key === 'ArrowRight') {
+            nextBtn.click();
+        }
+    });
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    container.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    container.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+            nextBtn.click();
+        }
+        if (touchEndX > touchStartX + swipeThreshold) {
+            prevBtn.click();
+        }
+    }
+
+    let resizeTimer;
     window.addEventListener('resize', () => {
-        updateCarouselView(currentActiveIndex); 
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(updateCarousel, 150);
     });
 }
 
@@ -269,9 +160,7 @@ function setupPrivacyPolicy() {
                 privacyPopup.classList.add('hidden');
             }
         });
-
     } else {
         console.warn('Privacy policy elements (button, popup, or close button) not found. Feature may not work as expected.');
     }
 }
-
