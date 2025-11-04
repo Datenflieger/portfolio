@@ -3,14 +3,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Datenflieger's portfolio - A developer who creates Minecraft plugins, server solutions, and modern websites. Check out my projects and get in touch!">
     <title>Datenflieger | Portfolio</title>
+
+    <!-- Preconnect to CDN for faster resource loading -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
     <!-- External stylesheets? Yes sir. We like clean UI 😻-->
     <link rel="stylesheet" href="css/styles.css">
 
     <!-- Icons? We got Font Awesome on speed dial -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
 </head>
 <body>
 
@@ -22,6 +27,7 @@
 <!-- Background grid just for the vibes -->
 <div class="grid-bg"></div>
 
+<main>
 <div class="sections-container">
 
     <!-- About Me Section -->
@@ -55,7 +61,7 @@
             
             <div class="about-me-avatar-panel">
                 <div class="avatar-container">
-                    <img src="assets/img/avatar.png" alt="Datenflieger Minecraft Avatar" class="animated-avatar">
+                    <img src="assets/img/avatar.png" alt="Datenflieger Minecraft Avatar" class="animated-avatar" width="1080" height="1920" fetchpriority="high">
                 </div>
             </div>
 
@@ -76,7 +82,7 @@
                     <!-- Project 1: Steyon Development (NEWEST) -->
                     <div class="project-card">
                         <div class="project-image-container">
-                            <img src="assets/img/steyon.png" alt="Steyon Development" class="project-image">
+                            <img src="assets/img/steyon.png" alt="Steyon Development" class="project-image" width="320" height="320" loading="lazy">
                         </div>
                         <div class="project-content">
                             <h3 class="project-title">Steyon Development</h3>
@@ -96,7 +102,7 @@
                     <!-- Project 2: OnThePixel -->
                     <div class="project-card">
                         <div class="project-image-container">
-                            <img src="assets/img/onthepixel.png" alt="OnThePixel" class="project-image">
+                            <img src="assets/img/onthepixel.png" alt="OnThePixel" class="project-image" width="256" height="256" loading="lazy">
                         </div>
                         <div class="project-content">
                             <h3 class="project-title">OnThePixel.net</h3>
@@ -110,7 +116,7 @@
                     <!-- Project 3: UnfinishedStory -->
                     <div class="project-card">
                         <div class="project-image-container">
-                            <img src="assets/img/unfinishedstory.png" alt="UnfinishedStory" class="project-image">
+                            <img src="assets/img/unfinishedstory.png" alt="UnfinishedStory" class="project-image" width="1024" height="1024" loading="lazy">
                         </div>
                         <div class="project-content">
                             <h3 class="project-title">UnfinishedStory.de</h3>
@@ -124,7 +130,7 @@
                     <!-- Project 4: Loxxler -->
                     <div class="project-card">
                         <div class="project-image-container">
-                            <img src="assets/img/loxxler.png" alt="Loxxler" class="project-image">
+                            <img src="assets/img/loxxler.png" alt="Loxxler" class="project-image" width="1000" height="1000" loading="lazy">
                         </div>
                         <div class="project-content">
                             <h3 class="project-title">Loxxler</h3>
@@ -138,7 +144,7 @@
                     <!-- Project 5: CherryBlock (OLDEST) -->
                     <div class="project-card">
                         <div class="project-image-container">
-                            <img src="assets/img/cherryblock.png" alt="CherryBlock" class="project-image">
+                            <img src="assets/img/cherryblock.png" alt="CherryBlock" class="project-image" width="500" height="500" loading="lazy">
                         </div>
                         <div class="project-content">
                             <h3 class="project-title">CherryBlock.de</h3>
@@ -178,8 +184,7 @@
         </div>
     </section>
 </div>
-
-
+</main>
 
 <!-- Main JS doing its magic 🪄 -->
 <script src="js/main.js"></script>

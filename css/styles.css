@@ -3,6 +3,7 @@
     src: url('../assets/img/fonts/SpaceGrotesk-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -10,6 +11,7 @@
     src: url('../assets/img/fonts/slkscreb.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 :root {
@@ -647,7 +649,9 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     opacity: 0.4;
     transform: scale(0.88);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity;
 }
 
 .project-card.active-project-card {
